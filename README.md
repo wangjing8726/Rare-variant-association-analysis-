@@ -1,1 +1,1 @@
-# BB103X course: examples
+A Simple Tutorial for Analyzing Data Using the R Language 
