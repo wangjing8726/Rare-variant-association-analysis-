@@ -1,1 +1,1 @@
-# Rare-variant-association-analysis-
+# BB103X coures: examples
