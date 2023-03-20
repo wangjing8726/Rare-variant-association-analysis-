@@ -1,1 +1,1 @@
-# BB103X coures: examples
+# BB103X course: examples
