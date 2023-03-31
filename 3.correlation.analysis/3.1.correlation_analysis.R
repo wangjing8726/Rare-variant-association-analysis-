@@ -22,28 +22,28 @@ head(df_corr)
 
 ###### Do not modify the code between the pound signs ################
 
-cors <- function(df) { 
+cors <- function(df) {
   # turn all three matrices (r, n, and P into a data frame)
   M <- Hmisc::rcorr(as.matrix(df), type='pearson') #spearman,pearson
   # return the three data frames in a list return(Mdf)
   Mdf <- map(M, ~data.frame(.x))
+  return(Mdf)
 }
 
+Mdf = cors(df_corr)
 
-formatted_cors <- function(df){
-  cors(df) %>%
-    map(~rownames_to_column(.x, var="measure1")) %>%
-    map(~pivot_longer(.x, -measure1, "measure2")) %>% 
-    bind_rows(.id = "id") %>%
-    pivot_wider(names_from = id, values_from = value) %>%
-    #mutate(P_adj = p.adjust(P, "BH")) %>%
-    mutate(P_adj = p.adjust(P))
-}
+res = lapply(Mdf, function(x){
+  x %>%
+    rownames_to_column("measure1") %>%  
+  pivot_longer(-measure1, names_to = "measure2")
+}) %>%
+  bind_rows(.id = "id") %>%
+  pivot_wider(names_from = id, values_from = value) %>%
+  #mutate(P_adj = p.adjust(P, "BH")) %>%
+  mutate(P_adj = p.adjust(P))
 
 
 ###### Do not modify the code between the pound signs ################
-
-res = formatted_cors(df_corr) 
 
 head(res)
 
