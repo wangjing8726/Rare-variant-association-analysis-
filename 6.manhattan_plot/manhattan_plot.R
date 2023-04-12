@@ -66,4 +66,3 @@ CMplot(d4p_mean2,
        main = "mQTL Manhattan Plot of all metabolites",
        file="jpg", memo = "")
 
-
